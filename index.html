@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jericho Mendoza — Photography</title>
+  <meta name="description" content="Jericho Mendoza — portrait, editorial and architecture photographer. Selected work, archive, services and commissions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js" } }
+  </script>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span id="cursorLabel"></span></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <a href="#top" class="logo">Jericho Mendoza<span class="logo-sub">Photography</span></a>
+    <nav class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#archive">Archive</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <!-- Replace with your own Behance profile URL -->
+      <a href="https://www.behance.net/" target="_blank" rel="noopener">Behance ↗</a>
+    </nav>
+    <a href="#contact" class="btn btn-light btn-sm"><span class="avail-dot"></span>Available for commissions</a>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <canvas id="stage" data-cursor="Drag"></canvas>
+    <div class="hero-vignette" aria-hidden="true"></div>
+
+    <div class="hero-copy">
+      <p class="kicker mono">Photographer &amp; visual storyteller — Portfolio 2019 / 2026</p>
+      <h1 class="hero-title">
+        <span class="line">Jericho</span>
+        <span class="line"><em>Mendoza</em></span>
+      </h1>
+      <p class="hero-sub">Portrait, editorial and architecture photography — composed like cinema, shot from every angle.</p>
+    </div>
+
+    <div class="dock" aria-label="3D viewer controls">
+      <div class="dock-row">
+        <span class="dock-label mono">View</span>
+        <div class="seg" id="camSeg">
+          <button data-cam="eye" class="active">Eye level</button>
+          <button data-cam="low">Low</button>
+          <button data-cam="bird">Bird's eye</button>
+          <button data-cam="dutch">Dutch</button>
+          <button data-cam="close">Close</button>
+          <button data-cam="inside">Inside</button>
+        </div>
+      </div>
+      <div class="dock-row">
+        <span class="dock-label mono">Form</span>
+        <div class="seg" id="layoutSeg">
+          <button data-layout="ring" class="active">Ring</button>
+          <button data-layout="helix">Helix</button>
+          <button data-layout="sphere">Sphere</button>
+          <button data-layout="wall">Wall</button>
+        </div>
+        <div class="hud mono" id="hud">
+          <span><i>FOV</i> <b id="hudFov">40</b></span>
+          <span><i>EL</i> <b id="hudEl">0</b>°</span>
+          <span><i>ROLL</i> <b id="hudRoll">0</b>°</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="#about" class="scroll-cue mono" aria-label="Scroll to content"><span></span>Scroll</a>
+    <div class="loader" id="loader">
+      <div class="loader-inner">
+        <span class="loader-name">Jericho Mendoza</span>
+        <span class="mono">Developing <b id="loadPct">0</b>%</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section about" id="about">
+    <figure class="about-portrait reveal">
+      <img id="aboutImg" alt="Portrait of Jericho Mendoza" loading="lazy" />
+      <figcaption class="mono">Jericho Mendoza — Self-portrait</figcaption>
+    </figure>
+    <div class="about-body">
+      <p class="label mono">(01) About</p>
+      <p class="statement reveal">I make photographs that feel like a still from a film — <em>quiet, deliberate,</em> and lit with intention.</p>
+      <div class="about-cols reveal">
+        <p class="muted">Jericho Mendoza is a photographer working across portraiture, fashion editorial and architecture. Every shoot starts in pre-visualisation: light, lens and angle planned before the camera comes out — so the day itself is free for the moments you can't plan.</p>
+        <dl class="facts">
+          <div><dt class="mono">Focus</dt><dd>Portrait · Editorial · Architecture</dd></div>
+          <div><dt class="mono">Available</dt><dd>Worldwide, on location or studio</dd></div>
+          <div><dt class="mono">Deliverables</dt><dd>Stills, BTS motion, licensing</dd></div>
+          <div><dt class="mono">Response</dt><dd>Within 24 hours</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SELECTED PROJECTS ============ -->
+  <section class="section" id="work">
+    <div class="section-head">
+      <p class="label mono">(02) Selected projects</p>
+      <h2 class="reveal">Work that <em>holds</em> a frame.</h2>
+    </div>
+    <ul class="projects" id="projects"></ul>
+    <div class="preview" id="preview" aria-hidden="true"><img id="previewImg" alt="" /></div>
+  </section>
+
+  <!-- ============ ARCHIVE ============ -->
+  <section class="section" id="archive">
+    <div class="section-head row">
+      <div>
+        <p class="label mono">(03) Archive</p>
+        <h2 class="reveal">The <em>contact sheet.</em></h2>
+      </div>
+      <div class="filters" id="filters">
+        <button class="chip active" data-f="all">All</button>
+        <button class="chip" data-f="portrait">Portrait</button>
+        <button class="chip" data-f="editorial">Editorial</button>
+        <button class="chip" data-f="architecture">Architecture</button>
+        <button class="chip" data-f="landscape">Landscape</button>
+      </div>
+    </div>
+    <div class="masonry" id="masonry"></div>
+  </section>
+
+  <!-- ============ ANGLES (scroll 3D) ============ -->
+  <section class="angles" id="angles">
+    <div class="angles-sticky">
+      <div class="angles-copy">
+        <p class="label mono">(04) Method</p>
+        <h2>The angle <br />is the <em>story.</em></h2>
+        <p class="muted">One subject, six setups. Scroll to orbit a single shoot the way it's planned — in 3D, before a light is unpacked.</p>
+        <ol class="angle-list mono" id="angleList">
+          <li class="active"><span>01</span> Frontal · 0°</li>
+          <li><span>02</span> Three-quarter · 35°</li>
+          <li><span>03</span> Profile · 60°</li>
+          <li><span>04</span> High angle · −30°</li>
+          <li><span>05</span> Low angle · +25°</li>
+          <li><span>06</span> Dutch · 18° roll</li>
+        </ol>
+      </div>
+      <div class="angles-stage">
+        <div class="cube-scene"><div class="stack" id="stack"></div></div>
+        <div class="angles-meter mono"><span id="angleDeg">0°</span><div class="meter"><i id="meterFill"></i></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="section">
+    <div class="section-head">
+      <p class="label mono">(05) Process</p>
+      <h2 class="reveal">From brief <em>to final grade.</em></h2>
+    </div>
+    <div class="process">
+      <article class="step reveal"><span class="mono">01</span><h3>Brief</h3><p class="muted">A conversation about the story, the audience and where the images will live.</p></article>
+      <article class="step reveal"><span class="mono">02</span><h3>Pre-viz</h3><p class="muted">Moodboard, location scout and lighting plan — every angle mapped in advance.</p></article>
+      <article class="step reveal"><span class="mono">03</span><h3>Shoot</h3><p class="muted">A calm, directed set. Tethered previews so you see the frames as they happen.</p></article>
+      <article class="step reveal"><span class="mono">04</span><h3>Grade &amp; deliver</h3><p class="muted">Hand-retouched, colour-graded files delivered in a private online gallery.</p></article>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="section" id="services">
+    <div class="section-head">
+      <p class="label mono">(06) Services</p>
+      <h2 class="reveal">Commissions.</h2>
+    </div>
+    <!-- Prices are placeholders — edit to your own rates -->
+    <ul class="services">
+      <li class="service reveal"><span class="mono idx">A</span><div><h3>Portrait sessions</h3><p class="muted">Personal branding, headshots, creative portraits. 2 hours, 25 retouched images.</p></div><span class="from mono">From $450</span></li>
+      <li class="service reveal"><span class="mono idx">B</span><div><h3>Fashion &amp; editorial</h3><p class="muted">Full-day production with creative direction, 3D pre-viz and BTS motion.</p></div><span class="from mono">From $1,800</span></li>
+      <li class="service reveal"><span class="mono idx">C</span><div><h3>Architecture &amp; interiors</h3><p class="muted">Spaces photographed at their best hour, with perspective-corrected finals.</p></div><span class="from mono">From $1,200</span></li>
+      <li class="service reveal"><span class="mono idx">D</span><div><h3>Brand campaigns</h3><p class="muted">Multi-day stills + motion with crew, casting and usage licensing.</p></div><span class="from mono">On request</span></li>
+    </ul>
+  </section>
+
+  <!-- ============ TESTIMONIAL ============ -->
+  <!-- Placeholder quote — replace with a real client testimonial -->
+  <section class="section quote reveal">
+    <p class="label mono">(07) Kind words</p>
+    <blockquote>“Jericho saw angles in our space we'd walked past for years. The images <em>still</em> do the selling for us.”</blockquote>
+    <p class="mono muted">— Client name, Company</p>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section contact" id="contact">
+    <div>
+      <p class="label mono">(08) Contact</p>
+      <h2 class="contact-title reveal">Let's make something <em>worth framing.</em></h2>
+      <!-- Replace with your real email and profiles -->
+      <a class="email" href="mailto:hello@jerichomendoza.com">hello@jerichomendoza.com <span>↗</span></a>
+      <div class="socials mono">
+        <a href="https://www.behance.net/" target="_blank" rel="noopener">Behance</a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <form class="contact-form reveal" id="contactForm">
+      <label>Name<input required name="name" placeholder="Your name" /></label>
+      <label>Email<input required type="email" name="email" placeholder="you@company.com" /></label>
+      <label class="full">Project type
+        <select name="type">
+          <option>Portrait session</option><option>Fashion &amp; editorial</option>
+          <option>Architecture &amp; interiors</option><option>Brand campaign</option><option>Something else</option>
+        </select>
+      </label>
+      <label class="full">Tell me about it<textarea name="msg" rows="4" placeholder="Dates, location, the story you want to tell…"></textarea></label>
+      <button class="btn btn-light full" type="submit">Send enquiry →</button>
+      <p class="form-note mono" id="formNote"></p>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-row mono">
+      <span>© 2026 Jericho Mendoza</span>
+      <span>All images © the photographer</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+    <p class="wordmark" aria-hidden="true">Jericho <em>Mendoza</em></p>
+  </footer>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Image viewer">
+    <button class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">←</button>
+    <button class="lb-btn lb-next" id="lbNext" aria-label="Next">→</button>
+    <figure>
+      <img id="lbImg" alt="" />
+      <figcaption class="mono" id="lbCap"></figcaption>
+    </figure>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
