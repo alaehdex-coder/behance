@@ -8,18 +8,33 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#0b0b0c" />
   <link rel="stylesheet" href="style.css" />
   <script type="importmap">
     { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js" } }
   </script>
 </head>
 <body>
+  <!-- Brand mark: camera aperture (6 blades) with an accent "lens" dot -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="mark" viewBox="0 0 32 32">
+      <g fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+        <circle cx="16" cy="16" r="14.2" />
+        <path d="M16 21.6L2.02 13.53M11.15 18.8L11.15 2.65M11.15 13.2L25.13 5.13M16 10.4L29.98 18.47M20.85 13.2L20.85 29.35M20.85 18.8L6.87 26.87" />
+      </g>
+      <circle cx="16" cy="16" r="2" fill="#d6ff3c" />
+    </symbol>
+  </svg>
   <div class="grain" aria-hidden="true"></div>
   <div class="cursor" id="cursor" aria-hidden="true"><span id="cursorLabel"></span></div>
 
   <!-- ============ NAV ============ -->
   <header class="nav">
-    <a href="#top" class="logo">Jericho Mendoza<span class="logo-sub">Photography</span></a>
+    <a href="#top" class="logo" aria-label="Jericho Mendoza Photography — home">
+      <svg class="logo-mark" aria-hidden="true"><use href="#mark" /></svg>
+      <span class="logo-text"><span class="logo-name">Jericho Mendoza</span><span class="logo-sub">Photography</span></span>
+    </a>
     <nav class="nav-links">
       <a href="#work">Work</a>
       <a href="#archive">Archive</a>
@@ -76,6 +91,7 @@
     <a href="#about" class="scroll-cue mono" aria-label="Scroll to content"><span></span>Scroll</a>
     <div class="loader" id="loader">
       <div class="loader-inner">
+        <svg class="loader-mark" aria-hidden="true"><use href="#mark" /></svg>
         <span class="loader-name">Jericho Mendoza</span>
         <span class="mono">Developing <b id="loadPct">0</b>%</span>
       </div>
@@ -220,7 +236,7 @@
 
   <footer class="footer">
     <div class="footer-row mono">
-      <span>© 2026 Jericho Mendoza</span>
+      <span class="footer-brand"><svg class="logo-mark" aria-hidden="true"><use href="#mark" /></svg>© 2026 Jericho Mendoza</span>
       <span>All images © the photographer</span>
       <a href="#top">Back to top ↑</a>
     </div>

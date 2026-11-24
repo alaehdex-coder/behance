@@ -69,8 +69,16 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
   transition: background .4s, backdrop-filter .4s, padding .4s;
 }
 .nav.scrolled { background: rgba(11,11,12,.72); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); padding-block: 12px; border-bottom: 1px solid var(--line); }
-.logo { font-family: var(--serif); font-size: 26px; line-height: 1; letter-spacing: -.01em; display: inline-flex; align-items: baseline; gap: 12px; white-space: nowrap; }
-.logo-sub { font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.logo { display: inline-flex; align-items: center; gap: 12px; white-space: nowrap; }
+.logo-mark { width: 34px; height: 34px; flex: none; color: var(--text); transition: transform 1s var(--ease); }
+.logo:hover .logo-mark { transform: rotate(60deg); }
+.logo-text { display: grid; gap: 3px; padding-left: 12px; border-left: 1px solid var(--line); }
+.logo-name { font-family: var(--serif); font-size: 23px; line-height: 1; letter-spacing: -.01em; }
+.logo-sub { font-family: var(--mono); font-size: 9px; line-height: 1; letter-spacing: .32em; text-transform: uppercase; color: var(--muted); }
+.footer-brand { display: inline-flex; align-items: center; gap: 10px; }
+.footer-brand .logo-mark { width: 20px; height: 20px; }
+.loader-mark { width: 56px; height: 56px; color: var(--text); margin-bottom: 6px; animation: spin 3s var(--ease) infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
 .nav-links { display: flex; gap: 30px; font-size: 14px; color: var(--muted); }
 .nav-links a { position: relative; transition: color .2s; }
 .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .4s var(--ease); }
@@ -282,7 +290,8 @@ h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 2.4vw, 
 }
 @media (max-width: 640px) {
   .nav .btn { display: none; }
-  .logo { font-size: 22px; }
+  .logo-mark { width: 30px; height: 30px; }
+  .logo-name { font-size: 20px; }
   .hud { display: none; }
   .dock { width: calc(100% - 32px); }
   .dock-row { min-width: 0; }
